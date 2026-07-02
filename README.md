@@ -82,3 +82,7 @@ A `CEINFUA_MEMBER` or `ADMIN` can create a `Student` record on someone's behalf 
 - The Prisma `datasource` provider stays `postgresql` when moving to a managed Postgres (Neon/Supabase) for deployment — only `DATABASE_URL` changes.
 - The Prisma client output is generated to `app/generated/prisma` (not the default `@prisma/client` path) — import from `@/app/generated/prisma/client` or `@/app/generated/prisma/enums`, not from `@prisma/client` directly.
 - Not yet built (flagged as follow-up, not in scope for this feature): password reset/"forgot password", CSV bulk import of students, audit logging, rate limiting on `/api/register`, multi-factor authentication.
+
+## License
+
+AGPL-3.0-or-later. See [`LICENSE`](./LICENSE).

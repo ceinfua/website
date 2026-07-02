@@ -83,8 +83,9 @@ servidor y abrilo en el navegador.
 Sembradas por `prisma/seed.ts` (`npx prisma db seed`):
 
 - email: `admin@ceinfua.local`
-- contraseña: `ChangeMe123!`
+- contraseña: la que hayas puesto en `ADMIN_SEED_PASSWORD` (`.env`)
 
-Credencial de bootstrap solo para desarrollo local. El comentario del script de seed dice
-explícitamente que nunca se use en producción. Cambiá la contraseña después del primer login si
-este entorno alguna vez pasa a ser compartido o desplegado.
+`ADMIN_SEED_PASSWORD` no tiene valor por defecto: el script falla explícitamente si no está
+seteada. Esto es intencional (el proyecto es público bajo AGPL-3.0-or-later desde que se agregó
+esto): no puede haber una contraseña de admin hardcodeada en el código que cualquiera pueda leer
+y probar contra un deploy real. Elegí una contraseña propia en `.env` antes de correr el seed.

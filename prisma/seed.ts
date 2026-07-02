@@ -9,10 +9,15 @@ const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
 const ADMIN_EMAIL = "admin@ceinfua.local";
-// Local-only bootstrap password. Change it after first login; never used in production.
-const ADMIN_PASSWORD = "ChangeMe123!";
+const ADMIN_PASSWORD = process.env.ADMIN_SEED_PASSWORD;
 
 async function main() {
+  if (!ADMIN_PASSWORD) {
+    throw new Error(
+      "ADMIN_SEED_PASSWORD must be set to seed the admin account (see .env.example)",
+    );
+  }
+
   const passwordHash = await bcrypt.hash(ADMIN_PASSWORD, 10);
 
   const admin = await prisma.user.upsert({
