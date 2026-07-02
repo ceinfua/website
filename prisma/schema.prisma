@@ -15,7 +15,7 @@ datasource db {
 // provider stays "postgresql" when moving to Neon/Supabase for deployment — only DATABASE_URL changes
 
 model News {
-  id        String   @id @default(cuid())
+  id        String   @id @default(dbgenerated("gen_random_uuid()::text"))
   title     String
   body      String
   createdAt DateTime @default(now())
@@ -23,7 +23,7 @@ model News {
 }
 
 model Event {
-  id          String   @id @default(cuid())
+  id          String   @id @default(dbgenerated("gen_random_uuid()::text"))
   title       String
   description String
   date        DateTime
@@ -50,7 +50,7 @@ enum Estado {
 }
 
 model User {
-  id                  String    @id @default(cuid())
+  id                  String    @id @default(dbgenerated("gen_random_uuid()::text"))
   email               String    @unique
   passwordHash        String?
   role                Role      @default(STUDENT)
@@ -64,7 +64,7 @@ model User {
 }
 
 model Student {
-  id            String   @id @default(cuid())
+  id            String   @id @default(dbgenerated("gen_random_uuid()::text"))
   userId        String   @unique
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   nombre        String
