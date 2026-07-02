@@ -4,6 +4,7 @@ import Link from "next/link";
 import "./globals.css";
 import { auth } from "@/lib/auth";
 import { Role } from "@/app/generated/prisma/enums";
+import { LogoutButton } from "@/app/components/LogoutButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,9 +54,12 @@ export default async function RootLayout({
             </>
           )}
           {session?.user && (
-            <Link href="/profile" className="hover:underline">
-              Mi perfil
-            </Link>
+            <>
+              <Link href="/profile" className="hover:underline">
+                Mi perfil
+              </Link>
+              <LogoutButton />
+            </>
           )}
           {(isStaff || role === Role.EXTERNAL_PARTNER) && (
             <Link href="/students" className="hover:underline">

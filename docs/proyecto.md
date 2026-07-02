@@ -48,6 +48,11 @@ credenciales en algún momento.
   desde `/students`, el sistema manda una invitación con un `claimToken` de un solo uso, y la
   persona invitada define su contraseña en `/claim-account?token=...` para activar la cuenta.
 
+**Cierre de sesión:** cualquier usuario autenticado ve un botón "Cerrar sesión" en la barra de
+navegación (`app/components/LogoutButton.tsx`), que invalida la sesión/JWT vía `signOut()` de
+NextAuth y redirige a `/login`. No requiere ruta ni endpoint propio: `signOut()` usa el handler
+ya expuesto en `/api/auth/**`.
+
 **Gestión de roles:** solo un `ADMIN` puede cambiar el rol de otro usuario, desde
 `/admin/roles`. No existe alta pública para roles que no sean `STUDENT`: es una restricción
 intencional, por seguridad. El sistema impide degradar al último `ADMIN` restante, para evitar
