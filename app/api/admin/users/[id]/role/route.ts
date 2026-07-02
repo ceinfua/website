@@ -15,7 +15,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   const result = await requireRole([Role.ADMIN]);
 
   if (!result.ok) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: result.status });
+    return NextResponse.json({ error: "No autorizado" }, { status: result.status });
   }
 
   let body: RoleBody;
@@ -23,19 +23,19 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+    return NextResponse.json({ error: "Cuerpo JSON invalido" }, { status: 400 });
   }
 
   const { role } = body;
 
   if (typeof role !== "string" || !ROLE_VALUES.includes(role as Role)) {
-    return NextResponse.json({ error: "Invalid role" }, { status: 400 });
+    return NextResponse.json({ error: "Rol invalido" }, { status: 400 });
   }
 
   const targetUser = await prisma.user.findUnique({ where: { id } });
 
   if (!targetUser) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+    return NextResponse.json({ error: "No encontrado" }, { status: 404 });
   }
 
   const isDemotingFromAdmin = targetUser.role === Role.ADMIN && role !== Role.ADMIN;
@@ -43,7 +43,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   if (isDemotingFromAdmin) {
     if (targetUser.id === result.user.id) {
       return NextResponse.json(
-        { error: "You cannot remove your own admin role" },
+        { error: "No podes quitarte tu propio rol de admin" },
         { status: 400 },
       );
     }
@@ -52,7 +52,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
 
     if (adminCount <= 1) {
       return NextResponse.json(
-        { error: "Cannot demote the last remaining admin" },
+        { error: "No se puede degradar al ultimo admin restante" },
         { status: 400 },
       );
     }

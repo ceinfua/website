@@ -38,14 +38,14 @@ export function RegisterPage() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error ?? "Registration failed");
+        setError(data.error ?? "No se pudo completar el registro");
         return;
       }
 
       setSuccess(true);
       router.refresh();
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError("Algo salio mal. Intenta de nuevo.");
     } finally {
       setSubmitting(false);
     }

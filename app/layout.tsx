@@ -30,41 +30,41 @@ export default async function RootLayout({
   const isStaff = role === Role.CEINFUA_MEMBER || role === Role.ADMIN;
 
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen bg-white text-neutral-900">
         <nav className="flex gap-6 border-b border-neutral-200 px-6 py-4">
           <Link href="/" className="font-semibold hover:underline">
             CEINFUA
           </Link>
           <Link href="/news" className="hover:underline">
-            News
+            Novedades
           </Link>
           <Link href="/events" className="hover:underline">
-            Events
+            Eventos
           </Link>
           {!session?.user && (
             <>
               <Link href="/login" className="hover:underline">
-                Login
+                Iniciar sesion
               </Link>
               <Link href="/register" className="hover:underline">
-                Register
+                Registrarme
               </Link>
             </>
           )}
           {session?.user && (
             <Link href="/profile" className="hover:underline">
-              Profile
+              Mi perfil
             </Link>
           )}
           {(isStaff || role === Role.EXTERNAL_PARTNER) && (
             <Link href="/students" className="hover:underline">
-              Roster
+              Padron
             </Link>
           )}
           {role === Role.ADMIN && (
             <Link href="/admin/roles" className="hover:underline">
-              Admin
+              Roles
             </Link>
           )}
         </nav>

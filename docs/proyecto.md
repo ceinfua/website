@@ -17,7 +17,7 @@ estudiantes con control de acceso basado en roles.
 
 Next.js (App Router) + TypeScript + Tailwind, Prisma contra Postgres local (vía Docker
 Compose). Modelos iniciales `News` y `Event`, con páginas placeholder `/`, `/news`, `/events`.
-Esta es la base sobre la que se construyó todo lo demás — sin ella, ninguna otra feature tiene
+Esta es la base sobre la que se construyó todo lo demás: sin ella, ninguna otra feature tiene
 dónde apoyarse.
 
 ### 2. Registro de estudiantes y control de acceso por roles (RBAC)
@@ -49,9 +49,9 @@ credenciales en algún momento.
   persona invitada define su contraseña en `/claim-account?token=...` para activar la cuenta.
 
 **Gestión de roles:** solo un `ADMIN` puede cambiar el rol de otro usuario, desde
-`/admin/roles`. No existe alta pública para roles que no sean `STUDENT` — es intencional, por
-seguridad. El sistema impide degradar al último `ADMIN` restante (evita quedar sin ningún
-admin).
+`/admin/roles`. No existe alta pública para roles que no sean `STUDENT`: es una restricción
+intencional, por seguridad. El sistema impide degradar al último `ADMIN` restante, para evitar
+quedar sin ningún admin.
 
 **Bootstrap del primer admin:** como no puede haber alta pública de admins, el primer usuario
 `ADMIN` se crea con un script de seed (`prisma/seed.ts` → `npx prisma db seed`). Ver
@@ -60,8 +60,8 @@ admin).
 ## Decisiones de arquitectura relevantes
 
 - **Email en desarrollo:** se usa Resend, pero sin `RESEND_API_KEY` configurada el sistema no
-  falla — loguea el email (asunto + link) en la consola del servidor en lugar de enviarlo. Así
-  los flujos de registro/invitación se pueden probar completos sin cuenta real de email.
+  falla: loguea el email (asunto y link) en la consola del servidor en lugar de enviarlo. Así
+  los flujos de registro e invitación se pueden probar completos sin cuenta real de email.
 - **IDs de las tablas:** en un principio los `id` se generaban con `cuid()` del lado de Prisma
   Client (código de la app). Se migró a que Postgres los genere directamente
   (`gen_random_uuid()`), porque el generador del lado de la app le impedía a Prisma Studio
@@ -70,12 +70,12 @@ admin).
 - **Nombres de campos en español, código en inglés:** los modelos/enums de Prisma están en
   inglés (convención del código), pero los campos de datos del estudiante (`nombre`,
   `apellido`, `cedula`, `carrera`, `estado`, etc.) están en español porque el dato en sí es
-  consumido y leído directamente por stakeholders no técnicos (staff, admins de CEINFUA).
+  consumido y leído directamente por stakeholders no técnicos.
 
 ## Lo que falta / queda fuera de alcance (por ahora)
 
 Marcado explícitamente como fuera de alcance en las specs, para futuras iteraciones:
-- Recuperación de contraseña ("forgot password") — el flujo de `claim-account` es distinto y no
+- Recuperación de contraseña ("forgot password"): el flujo de `claim-account` es distinto y no
   lo cubre
 - Importación masiva de estudiantes (CSV)
 - Auditoría de quién cambió qué
@@ -83,8 +83,8 @@ Marcado explícitamente como fuera de alcance en las specs, para futuras iteraci
 - Autenticación multifactor
 - Deploy a producción (cuentas de GitHub/Vercel/Neon, dominio, secretos de producción)
 - Pulido visual/UI más allá de formularios funcionales
-- CRUD real de News/Events (crear, editar, borrar publicaciones desde la app) — hoy son modelos
-  con placeholders, no hay UI de administración de contenido todavía
+- CRUD real de News/Events (crear, editar, borrar publicaciones desde la app): hoy son modelos
+  con placeholders, todavía no hay UI de administración de contenido
 
 ## Dónde está cada cosa
 

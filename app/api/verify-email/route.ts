@@ -7,13 +7,13 @@ export async function GET(request: Request) {
   const token = searchParams.get("token");
 
   if (!token) {
-    return NextResponse.json({ error: "Missing token" }, { status: 400 });
+    return NextResponse.json({ error: "Falta el token" }, { status: 400 });
   }
 
   const user = await prisma.user.findUnique({ where: { claimToken: token } });
 
   if (!user || !user.claimTokenExpiresAt || user.claimTokenExpiresAt < new Date()) {
-    return NextResponse.json({ error: "Invalid or expired token" }, { status: 400 });
+    return NextResponse.json({ error: "Token invalido o expirado" }, { status: 400 });
   }
 
   await prisma.user.update({

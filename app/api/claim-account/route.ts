@@ -14,18 +14,18 @@ export async function POST(request: Request) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+    return NextResponse.json({ error: "Cuerpo JSON invalido" }, { status: 400 });
   }
 
   const { token, password } = body;
 
   if (typeof token !== "string" || token.trim().length === 0) {
-    return NextResponse.json({ error: "Missing token" }, { status: 400 });
+    return NextResponse.json({ error: "Falta el token" }, { status: 400 });
   }
 
   if (typeof password !== "string" || password.length < 8) {
     return NextResponse.json(
-      { error: "Password must be at least 8 characters" },
+      { error: "La contrasena debe tener al menos 8 caracteres" },
       { status: 400 },
     );
   }
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
   const user = await prisma.user.findUnique({ where: { claimToken: token } });
 
   if (!user || !user.claimTokenExpiresAt || user.claimTokenExpiresAt < new Date()) {
-    return NextResponse.json({ error: "Invalid or expired token" }, { status: 400 });
+    return NextResponse.json({ error: "Token invalido o expirado" }, { status: 400 });
   }
 
   const passwordHash = await bcrypt.hash(password, 10);

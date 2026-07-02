@@ -4,8 +4,8 @@ export default function Home() {
       <h1 className="text-3xl font-bold">CEINFUA</h1>
       <p className="mt-4 max-w-xl text-neutral-600">
         Centro de Estudiantes de Ingenieria Informatica de la Universidad
-        Americana. This site publishes news and events for the student
-        center.
+        Americana. Este sitio publica novedades y eventos del centro de
+        estudiantes.
       </p>
     </div>
   );
