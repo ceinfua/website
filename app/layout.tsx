@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
+import { auth } from "@/lib/auth";
+import { Role } from "@/app/generated/prisma/enums";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +20,15 @@ export const metadata: Metadata = {
   description: "Centro de Estudiantes de Ingenieria Informatica - UA",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+  const role = session?.user?.role;
+  const isStaff = role === Role.CEINFUA_MEMBER || role === Role.ADMIN;
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen bg-white text-neutral-900">
@@ -36,6 +42,31 @@ export default function RootLayout({
           <Link href="/events" className="hover:underline">
             Events
           </Link>
+          {!session?.user && (
+            <>
+              <Link href="/login" className="hover:underline">
+                Login
+              </Link>
+              <Link href="/register" className="hover:underline">
+                Register
+              </Link>
+            </>
+          )}
+          {session?.user && (
+            <Link href="/profile" className="hover:underline">
+              Profile
+            </Link>
+          )}
+          {(isStaff || role === Role.EXTERNAL_PARTNER) && (
+            <Link href="/students" className="hover:underline">
+              Roster
+            </Link>
+          )}
+          {role === Role.ADMIN && (
+            <Link href="/admin/roles" className="hover:underline">
+              Admin
+            </Link>
+          )}
         </nav>
         <main>{children}</main>
       </body>

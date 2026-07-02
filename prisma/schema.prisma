@@ -30,3 +30,50 @@ model Event {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+enum Role {
+  STUDENT
+  CEINFUA_MEMBER
+  ADMIN
+  EXTERNAL_PARTNER
+}
+
+enum Carrera {
+  INGENIERIA_INFORMATICA
+  LICENCIATURA_ANALISIS_SISTEMAS
+}
+
+enum Estado {
+  ACTIVO
+  EGRESADO
+  INACTIVO
+}
+
+model User {
+  id                  String    @id @default(cuid())
+  email               String    @unique
+  passwordHash        String?
+  role                Role      @default(STUDENT)
+  emailVerifiedAt     DateTime?
+  claimToken          String?   @unique
+  claimTokenExpiresAt DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  student Student?
+}
+
+model Student {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nombre        String
+  apellido      String
+  cedula        String   @unique
+  telefono      String
+  carrera       Carrera
+  anioIngreso   Int
+  estado        Estado   @default(ACTIVO)
+  creadoEn      DateTime @default(now()) @map("createdAt")
+  actualizadoEn DateTime @updatedAt @map("updatedAt")
+}
