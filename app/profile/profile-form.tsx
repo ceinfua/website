@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 import { useRouter } from "next/navigation";
 
 import type { FullStudentView } from "@/lib/authz";
@@ -20,7 +20,7 @@ export function ProfileForm({
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
@@ -49,19 +49,19 @@ export function ProfileForm({
       <dl className="grid grid-cols-2 gap-y-2 text-sm">
         <dt className="text-neutral-500">Nombre</dt>
         <dd>{student.nombre} {student.apellido}</dd>
-        <dt className="text-neutral-500">Cedula</dt>
+        <dt className="text-neutral-500">Cédula</dt>
         <dd>{student.cedula}</dd>
         <dt className="text-neutral-500">Correo</dt>
         <dd>{student.correo}</dd>
         <dt className="text-neutral-500">Carrera</dt>
         <dd>{student.carrera}</dd>
-        <dt className="text-neutral-500">Ano de ingreso</dt>
+        <dt className="text-neutral-500">Año de ingreso</dt>
         <dd>{student.anioIngreso}</dd>
       </dl>
 
       <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
         <label className="text-sm text-neutral-500">
-          Telefono
+          Teléfono
           <input
             className="mt-1 w-full rounded border border-neutral-300 px-3 py-2"
             value={telefono}

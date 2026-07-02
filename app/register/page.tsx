@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 import { useRouter } from "next/navigation";
 
 const CARRERAS = [
-  { value: "INGENIERIA_INFORMATICA", label: "Ingenieria Informatica" },
-  { value: "LICENCIATURA_ANALISIS_SISTEMAS", label: "Licenciatura en Analisis de Sistemas" },
+  { value: "INGENIERIA_INFORMATICA", label: "Ingeniería Informática" },
+  { value: "LICENCIATURA_ANALISIS_SISTEMAS", label: "Licenciatura en Análisis de Sistemas" },
 ];
 
 export function RegisterPage() {
@@ -24,7 +24,7 @@ export function RegisterPage() {
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
@@ -45,7 +45,7 @@ export function RegisterPage() {
       setSuccess(true);
       router.refresh();
     } catch {
-      setError("Algo salio mal. Intenta de nuevo.");
+      setError("Algo salió mal. Intenta de nuevo.");
     } finally {
       setSubmitting(false);
     }
@@ -56,7 +56,7 @@ export function RegisterPage() {
       <div className="mx-auto max-w-md px-6 py-16">
         <h1 className="text-2xl font-bold">Revisa tu correo</h1>
         <p className="mt-4 text-neutral-600">
-          Te enviamos un enlace de verificacion. Confirma tu correo para poder iniciar sesion.
+          Te enviamos un enlace de verificación. Confirma tu correo para poder iniciar sesión.
         </p>
       </div>
     );
@@ -82,7 +82,7 @@ export function RegisterPage() {
         />
         <input
           className="rounded border border-neutral-300 px-3 py-2"
-          placeholder="Cedula"
+          placeholder="Cédula"
           value={form.cedula}
           onChange={(e) => setForm({ ...form, cedula: e.target.value })}
           required
@@ -115,7 +115,7 @@ export function RegisterPage() {
         </select>
         <input
           className="rounded border border-neutral-300 px-3 py-2"
-          placeholder="Ano de ingreso"
+          placeholder="Año de ingreso"
           type="number"
           value={form.anioIngreso}
           onChange={(e) => setForm({ ...form, anioIngreso: Number(e.target.value) })}
@@ -123,7 +123,7 @@ export function RegisterPage() {
         />
         <input
           className="rounded border border-neutral-300 px-3 py-2"
-          placeholder="Contrasena"
+          placeholder="Contraseña"
           type="password"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}

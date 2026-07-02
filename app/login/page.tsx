@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
@@ -11,7 +11,7 @@ export function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
@@ -24,7 +24,7 @@ export function LoginPage() {
       });
 
       if (result?.error) {
-        setError("Credenciales invalidas o correo no verificado");
+        setError("Credenciales inválidas o correo no verificado");
         return;
       }
 
@@ -37,7 +37,7 @@ export function LoginPage() {
 
   return (
     <div className="mx-auto max-w-md px-6 py-16">
-      <h1 className="text-2xl font-bold">Iniciar sesion</h1>
+      <h1 className="text-2xl font-bold">Iniciar sesión</h1>
       <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
         <input
           className="rounded border border-neutral-300 px-3 py-2"
@@ -49,7 +49,7 @@ export function LoginPage() {
         />
         <input
           className="rounded border border-neutral-300 px-3 py-2"
-          placeholder="Contrasena"
+          placeholder="Contraseña"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

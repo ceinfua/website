@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, type FormEvent } from "react";
+import { Suspense, useState, type SubmitEvent } from "react";
 import { useSearchParams } from "next/navigation";
 
 function ClaimAccountForm() {
@@ -11,7 +11,7 @@ function ClaimAccountForm() {
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
@@ -38,8 +38,8 @@ function ClaimAccountForm() {
   if (!token) {
     return (
       <div className="mx-auto max-w-md px-6 py-16">
-        <h1 className="text-2xl font-bold">Enlace invalido</h1>
-        <p className="mt-4 text-neutral-600">Falta el token de activacion en el enlace.</p>
+        <h1 className="text-2xl font-bold">Enlace inválido</h1>
+        <p className="mt-4 text-neutral-600">Falta el token de activación en el enlace.</p>
       </div>
     );
   }
@@ -49,7 +49,7 @@ function ClaimAccountForm() {
       <div className="mx-auto max-w-md px-6 py-16">
         <h1 className="text-2xl font-bold">Cuenta activada</h1>
         <p className="mt-4 text-neutral-600">
-          Ya puedes <a href="/login" className="underline">iniciar sesion</a>.
+          Ya puedes <a href="/login" className="underline">iniciar sesión</a>.
         </p>
       </div>
     );
@@ -61,7 +61,7 @@ function ClaimAccountForm() {
       <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
         <input
           className="rounded border border-neutral-300 px-3 py-2"
-          placeholder="Nueva contrasena"
+          placeholder="Nueva contraseña"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

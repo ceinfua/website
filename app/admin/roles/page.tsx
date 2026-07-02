@@ -23,7 +23,7 @@ export async function AdminRolesPage() {
 
   return (
     <div className="px-6 py-16">
-      <h1 className="text-2xl font-bold">Gestion de roles</h1>
+      <h1 className="text-2xl font-bold">Gestión de roles</h1>
       <RolesTable users={users} currentUserId={session.user.id} />
     </div>
   );

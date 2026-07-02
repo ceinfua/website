@@ -23,13 +23,13 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Cuerpo JSON invalido" }, { status: 400 });
+    return NextResponse.json({ error: "Cuerpo JSON inválido" }, { status: 400 });
   }
 
   const { role } = body;
 
   if (typeof role !== "string" || !ROLE_VALUES.includes(role as Role)) {
-    return NextResponse.json({ error: "Rol invalido" }, { status: 400 });
+    return NextResponse.json({ error: "Rol inválido" }, { status: 400 });
   }
 
   const targetUser = await prisma.user.findUnique({ where: { id } });
@@ -43,7 +43,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   if (isDemotingFromAdmin) {
     if (targetUser.id === result.user.id) {
       return NextResponse.json(
-        { error: "No podes quitarte tu propio rol de admin" },
+        { error: "No podés quitarte tu propio rol de admin" },
         { status: 400 },
       );
     }
@@ -52,7 +52,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
 
     if (adminCount <= 1) {
       return NextResponse.json(
-        { error: "No se puede degradar al ultimo admin restante" },
+        { error: "No se puede degradar al último admin restante" },
         { status: 400 },
       );
     }

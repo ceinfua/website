@@ -13,7 +13,7 @@ export async function GET(request: Request) {
   const user = await prisma.user.findUnique({ where: { claimToken: token } });
 
   if (!user || !user.claimTokenExpiresAt || user.claimTokenExpiresAt < new Date()) {
-    return NextResponse.json({ error: "Token invalido o expirado" }, { status: 400 });
+    return NextResponse.json({ error: "Token inválido o expirado" }, { status: 400 });
   }
 
   await prisma.user.update({

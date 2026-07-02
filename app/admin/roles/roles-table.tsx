@@ -56,7 +56,7 @@ export function RolesTable({
           <tr key={user.id} className="border-b border-neutral-100">
             <td className="py-2 pr-4">
               {user.email}
-              {user.id === currentUserId && <span className="ml-2 text-neutral-400">(tu)</span>}
+              {user.id === currentUserId && <span className="ml-2 text-neutral-400">(tú)</span>}
             </td>
             <td className="py-2 pr-4">
               <select

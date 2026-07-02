@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "CEINFUA",
-  description: "Centro de Estudiantes de Ingenieria Informatica - UA",
+  description: "Centro de Estudiantes de Ingeniería Informática - UA",
 };
 
 export default async function RootLayout({
@@ -45,7 +45,7 @@ export default async function RootLayout({
           {!session?.user && (
             <>
               <Link href="/login" className="hover:underline">
-                Iniciar sesion
+                Iniciar sesión
               </Link>
               <Link href="/register" className="hover:underline">
                 Registrarme
@@ -59,7 +59,7 @@ export default async function RootLayout({
           )}
           {(isStaff || role === Role.EXTERNAL_PARTNER) && (
             <Link href="/students" className="hover:underline">
-              Padron
+              Padrón
             </Link>
           )}
           {role === Role.ADMIN && (

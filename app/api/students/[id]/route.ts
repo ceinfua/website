@@ -90,7 +90,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Cuerpo JSON invalido" }, { status: 400 });
+    return NextResponse.json({ error: "Cuerpo JSON inválido" }, { status: 400 });
   }
 
   const allowedFields = isStaff ? STAFF_EDITABLE_FIELDS : SELF_EDITABLE_FIELDS;
@@ -99,7 +99,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
 
   if (disallowed.length > 0) {
     return NextResponse.json(
-      { error: `No podes editar el/los campo(s): ${disallowed.join(", ")}` },
+      { error: `No podés editar el/los campo(s): ${disallowed.join(", ")}` },
       { status: 403 },
     );
   }
@@ -108,49 +108,49 @@ export async function PATCH(request: Request, { params }: RouteParams) {
 
   if (body.nombre !== undefined) {
     if (typeof body.nombre !== "string" || body.nombre.trim().length === 0) {
-      return NextResponse.json({ error: "Nombre invalido" }, { status: 400 });
+      return NextResponse.json({ error: "Nombre inválido" }, { status: 400 });
     }
     data.nombre = body.nombre;
   }
 
   if (body.apellido !== undefined) {
     if (typeof body.apellido !== "string" || body.apellido.trim().length === 0) {
-      return NextResponse.json({ error: "Apellido invalido" }, { status: 400 });
+      return NextResponse.json({ error: "Apellido inválido" }, { status: 400 });
     }
     data.apellido = body.apellido;
   }
 
   if (body.cedula !== undefined) {
     if (typeof body.cedula !== "string" || body.cedula.trim().length === 0) {
-      return NextResponse.json({ error: "Cedula invalida" }, { status: 400 });
+      return NextResponse.json({ error: "Cédula inválida" }, { status: 400 });
     }
     data.cedula = body.cedula;
   }
 
   if (body.telefono !== undefined) {
     if (typeof body.telefono !== "string" || body.telefono.trim().length === 0) {
-      return NextResponse.json({ error: "Telefono invalido" }, { status: 400 });
+      return NextResponse.json({ error: "Teléfono inválido" }, { status: 400 });
     }
     data.telefono = body.telefono;
   }
 
   if (body.carrera !== undefined) {
     if (typeof body.carrera !== "string" || !CARRERA_VALUES.includes(body.carrera as Carrera)) {
-      return NextResponse.json({ error: "Carrera invalida" }, { status: 400 });
+      return NextResponse.json({ error: "Carrera inválida" }, { status: 400 });
     }
     data.carrera = body.carrera as Carrera;
   }
 
   if (body.anioIngreso !== undefined) {
     if (typeof body.anioIngreso !== "number" || !Number.isInteger(body.anioIngreso)) {
-      return NextResponse.json({ error: "Ano de ingreso invalido" }, { status: 400 });
+      return NextResponse.json({ error: "Año de ingreso inválido" }, { status: 400 });
     }
     data.anioIngreso = body.anioIngreso;
   }
 
   if (body.estado !== undefined) {
     if (typeof body.estado !== "string" || !ESTADO_VALUES.includes(body.estado as Estado)) {
-      return NextResponse.json({ error: "Estado invalido" }, { status: 400 });
+      return NextResponse.json({ error: "Estado inválido" }, { status: 400 });
     }
     data.estado = body.estado as Estado;
   }
@@ -165,7 +165,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     });
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
-      return NextResponse.json({ error: "La cedula ya esta en uso" }, { status: 409 });
+      return NextResponse.json({ error: "La cédula ya está en uso" }, { status: 409 });
     }
     throw error;
   }

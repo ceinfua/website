@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Cuerpo JSON invalido" }, { status: 400 });
+    return NextResponse.json({ error: "Cuerpo JSON inválido" }, { status: 400 });
   }
 
   const { nombre, apellido, cedula, correo, telefono, carrera, anioIngreso, password } = body;
@@ -46,21 +46,21 @@ export async function POST(request: Request) {
     password.length < 8
   ) {
     return NextResponse.json(
-      { error: "Faltan campos obligatorios o son invalidos" },
+      { error: "Faltan campos obligatorios o son inválidos" },
       { status: 400 },
     );
   }
 
   if (typeof correo !== "string" || !EMAIL_RE.test(correo)) {
-    return NextResponse.json({ error: "Formato de correo invalido" }, { status: 400 });
+    return NextResponse.json({ error: "Formato de correo inválido" }, { status: 400 });
   }
 
   if (typeof carrera !== "string" || !CARRERA_VALUES.includes(carrera as Carrera)) {
-    return NextResponse.json({ error: "Carrera invalida" }, { status: 400 });
+    return NextResponse.json({ error: "Carrera inválida" }, { status: 400 });
   }
 
   if (typeof anioIngreso !== "number" || !Number.isInteger(anioIngreso)) {
-    return NextResponse.json({ error: "Ano de ingreso invalido" }, { status: 400 });
+    return NextResponse.json({ error: "Año de ingreso inválido" }, { status: 400 });
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
@@ -93,7 +93,7 @@ export async function POST(request: Request) {
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
       return NextResponse.json(
-        { error: "Ya existe una cuenta con ese correo o cedula" },
+        { error: "Ya existe una cuenta con ese correo o cédula" },
         { status: 409 },
       );
     }

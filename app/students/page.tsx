@@ -37,13 +37,13 @@ export async function StudentsPage() {
           <tr className="border-b border-neutral-200">
             <th className="py-2 pr-4">Nombre</th>
             <th className="py-2 pr-4">Apellido</th>
-            <th className="py-2 pr-4">Cedula</th>
-            <th className="py-2 pr-4">Telefono</th>
+            <th className="py-2 pr-4">Cédula</th>
+            <th className="py-2 pr-4">Teléfono</th>
             {isFullView && (
               <>
                 <th className="py-2 pr-4">Correo</th>
                 <th className="py-2 pr-4">Carrera</th>
-                <th className="py-2 pr-4">Ano</th>
+                <th className="py-2 pr-4">Año</th>
                 <th className="py-2 pr-4">Estado</th>
               </>
             )}
