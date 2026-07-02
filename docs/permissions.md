@@ -60,6 +60,7 @@ permitidos.
 | `/`, `/events`, `/news`, `/login`, `/register`, `/claim-account` | Pública |
 | `/api/auth/**`, `/api/register`, `/api/claim-account`, `/api/verify-email` | Pública |
 | `/profile` | Cualquier usuario autenticado |
+| `/api/profile/password` | Cualquier usuario autenticado (no está en `PROTECTED_ROUTES` a propósito: cae en el chequeo por defecto de "autenticado, cualquier rol", igual que `/profile`) |
 | `/students` | `CEINFUA_MEMBER`, `ADMIN`, `EXTERNAL_PARTNER` |
 | `/api/students` (listado) | `CEINFUA_MEMBER`, `ADMIN`, `EXTERNAL_PARTNER` |
 | `/api/students/[id]` | Cualquier rol autenticado (self/staff/partner se verifica en el handler) |

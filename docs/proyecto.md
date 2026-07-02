@@ -53,6 +53,13 @@ navegación (`app/components/LogoutButton.tsx`), que invalida la sesión/JWT ví
 NextAuth y redirige a `/login`. No requiere ruta ni endpoint propio: `signOut()` usa el handler
 ya expuesto en `/api/auth/**`.
 
+**Cambio de contraseña:** cualquier usuario autenticado puede cambiar su propia contraseña desde
+`/profile` (`app/profile/password-form.tsx` + `PATCH /api/profile/password`), ingresando la
+contraseña actual y la nueva. Solo autoservicio: no hay forma de que un `ADMIN`/`CEINFUA_MEMBER`
+resetee la contraseña de otro usuario (eso queda fuera de alcance, ver más abajo) ni un flujo de
+"olvidé mi contraseña" sin sesión. Esto también es lo que se usa para rotar la contraseña del
+admin sembrado por el seed, en vez de tener que volver a correr `npx prisma db seed`.
+
 **Gestión de roles:** solo un `ADMIN` puede cambiar el rol de otro usuario, desde
 `/admin/roles`. No existe alta pública para roles que no sean `STUDENT`: es una restricción
 intencional, por seguridad. El sistema impide degradar al último `ADMIN` restante, para evitar
@@ -97,3 +104,4 @@ Marcado explícitamente como fuera de alcance en las specs, para futuras iteraci
 - Planes de implementación (cómo se construye, paso a paso): `.../stages/02-implementation/output/`
 - Descripciones de PR: `.../stages/03-pr/output/`
 - Notas operativas de desarrollo local (Docker, Prisma, credenciales): `docs/local-dev-notes.md`
+- Sobre la licencia (AGPL) y qué implica: `docs/licencia.md`
