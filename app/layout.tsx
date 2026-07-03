@@ -67,9 +67,17 @@ export default async function RootLayout({
             </Link>
           )}
           {role === Role.ADMIN && (
-            <Link href="/admin/roles" className="hover:underline">
-              Roles
-            </Link>
+            <>
+              <Link href="/admin/news" className="hover:underline">
+                Gestionar noticias
+              </Link>
+              <Link href="/admin/events" className="hover:underline">
+                Gestionar eventos
+              </Link>
+              <Link href="/admin/roles" className="hover:underline">
+                Roles
+              </Link>
+            </>
           )}
         </nav>
         <main>{children}</main>
