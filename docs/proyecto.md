@@ -149,4 +149,6 @@ Marcado explícitamente como fuera de alcance en las specs, para futuras iteraci
 - Planes de implementación (cómo se construye, paso a paso): `.../stages/02-implementation/output/`
 - Descripciones de PR: `.../stages/03-pr/output/`
 - Notas operativas de desarrollo local (Docker, Prisma, credenciales): `docs/local-dev-notes.md`
+- Guía para admins sobre cómo publicar noticias y eventos (sin tocar código): `docs/guia-publicar-contenido.md`
+- Guía para cambiar tu contraseña y gestionar roles: `docs/guia-cuenta-y-roles.md`
 - Sobre la licencia (AGPL) y qué implica: `docs/licencia.md`
