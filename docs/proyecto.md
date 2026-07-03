@@ -69,6 +69,25 @@ quedar sin ningún admin.
 `ADMIN` se crea con un script de seed (`prisma/seed.ts` → `npx prisma db seed`). Ver
 `docs/local-dev-notes.md` para las credenciales de desarrollo.
 
+### 3. Gestión de novedades (News) — CRUD de administración
+
+Solo un `ADMIN` puede crear, editar y borrar noticias desde `/admin/news`
+(`app/api/admin/news/route.ts` + `app/api/admin/news/[id]/route.ts`). La publicación es
+inmediata: no hay estado de borrador ni flujo de aprobación. Cada noticia tiene título, cuerpo
+y una imagen de portada opcional.
+
+**Imágenes:** se suben a Vercel Blob (`lib/blob.ts`), validando tipo (`png`/`jpeg`/`webp`) y
+tamaño (máx. 5MB) antes de subir. Al reemplazar o borrar una noticia, la imagen vieja también se
+borra del blob store, para no dejar archivos huérfanos.
+
+**Página pública `/news`:** ya no es un placeholder — trae las últimas 10 noticias
+(`createdAt` descendente) directamente vía Prisma en el server component, y expone "Cargar más"
+que pagina con cursor contra `GET /api/news` (ruta pública, sin autenticación — ver
+`docs/permissions.md`).
+
+**Eventos (`/events`, `/admin/events`) quedan fuera de esta iteración** — mismo patrón, se
+construye en una PR separada (ver sección "Lo que falta" abajo).
+
 ## Decisiones de arquitectura relevantes
 
 - **Email en desarrollo:** se usa Resend, pero sin `RESEND_API_KEY` configurada el sistema no
@@ -95,8 +114,10 @@ Marcado explícitamente como fuera de alcance en las specs, para futuras iteraci
 - Autenticación multifactor
 - Deploy a producción (cuentas de GitHub/Vercel/Neon, dominio, secretos de producción)
 - Pulido visual/UI más allá de formularios funcionales
-- CRUD real de News/Events (crear, editar, borrar publicaciones desde la app): hoy son modelos
-  con placeholders, todavía no hay UI de administración de contenido
+- CRUD de Events (crear, editar, borrar eventos desde la app): News ya lo tiene (`/admin/news`,
+  ver sección 3 arriba), Events se construye en una PR separada siguiendo el mismo patrón
+- Múltiples imágenes por noticia/evento, recorte/redimensionado, o una librería de medios
+- Categorías, tags o búsqueda de texto completo sobre News/Events
 
 ## Dónde está cada cosa
 

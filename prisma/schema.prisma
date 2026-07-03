@@ -18,6 +18,7 @@ model News {
   id        String   @id @default(dbgenerated("gen_random_uuid()::text"))
   title     String
   body      String
+  imageUrl  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

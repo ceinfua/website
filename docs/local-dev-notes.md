@@ -78,6 +78,15 @@ verificación o de claim) en la terminal donde corre `npm run dev`. Para complet
 registro o claim-account localmente: enviá el formulario y después copiá el link del log del
 servidor y abrilo en el navegador.
 
+## Subida de imágenes (News/Events) con Vercel Blob
+
+`BLOB_READ_WRITE_TOKEN` (`.env`) es el token de lectura/escritura de un store de Vercel Blob.
+Se obtiene desde el dashboard de Vercel (Storage → Blob → crear/seleccionar un store → Tokens).
+Sin este token seteado, subir una imagen desde `/admin/news` va a fallar con un error 500 al
+intentar guardar la noticia (el resto del formulario, sin imagen, funciona igual). `lib/blob.ts`
+valida tipo (`png`/`jpeg`/`webp`) y tamaño (máx. 5MB) del lado del servidor antes de subir, y se
+encarga de borrar la imagen vieja del blob store al reemplazarla o al borrar la noticia.
+
 ## Credenciales del admin inicial (bootstrap)
 
 Sembradas por `prisma/seed.ts` (`npx prisma db seed`):
