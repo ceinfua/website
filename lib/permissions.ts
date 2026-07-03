@@ -19,6 +19,7 @@ export const PUBLIC_ROUTES: RegExp[] = [
   /^\/api\/claim-account$/,
   /^\/api\/verify-email$/,
   /^\/api\/news$/,
+  /^\/api\/events$/,
 ];
 
 export type RouteRule = {

@@ -103,6 +103,31 @@ construye en una PR separada (ver sección "Lo que falta" abajo).
   `apellido`, `cedula`, `carrera`, `estado`, etc.) están en español porque el dato en sí es
   consumido y leído directamente por stakeholders no técnicos.
 
+### 4. Gestión de eventos (Events) — CRUD de administración
+
+Mismo patrón que News (sección 3): solo un `ADMIN` puede crear, editar y borrar eventos desde
+`/admin/events` (`app/api/admin/events/route.ts` + `app/api/admin/events/[id]/route.ts`),
+publicación inmediata, imagen de portada opcional reutilizando `lib/blob.ts` sin cambios
+(carpeta `"events"` en vez de `"news"`). Cada evento tiene título, descripción, fecha e imagen
+opcional.
+
+**Página pública `/events`:** ya no es un placeholder — se divide en dos secciones
+independientes, cada una con su propia paginación por cursor:
+- **Próximos eventos:** `date >= ahora`, orden ascendente (el más próximo primero)
+- **Eventos pasados:** `date < ahora`, orden descendente (el más reciente primero)
+
+Ambas secciones consultan `GET /api/events?when=upcoming|past` (ruta pública, sin
+autenticación — ver `docs/permissions.md`) para "Cargar más". Un evento con fecha pasada se
+puede crear igual (por ejemplo para dejar registro de un evento ya ocurrido); simplemente
+aparece directo en la sección de pasados.
+
+**Gap encontrado en la PR de News, corregido acá desde el inicio:** las rutas públicas de
+lectura (`/api/news`, `/api/events`) necesitan estar declaradas explícitamente en
+`PUBLIC_ROUTES` (`lib/permissions.ts`), porque el proyecto deniega por defecto cualquier ruta no
+listada. En la PR de News esto se descubrió recién en pruebas manuales; acá se agregó
+`/api/events` a la lista como parte del mismo paso que crea la ruta, no como corrección
+posterior.
+
 ## Lo que falta / queda fuera de alcance (por ahora)
 
 Marcado explícitamente como fuera de alcance en las specs, para futuras iteraciones:
@@ -114,10 +139,9 @@ Marcado explícitamente como fuera de alcance en las specs, para futuras iteraci
 - Autenticación multifactor
 - Deploy a producción (cuentas de GitHub/Vercel/Neon, dominio, secretos de producción)
 - Pulido visual/UI más allá de formularios funcionales
-- CRUD de Events (crear, editar, borrar eventos desde la app): News ya lo tiene (`/admin/news`,
-  ver sección 3 arriba), Events se construye en una PR separada siguiendo el mismo patrón
 - Múltiples imágenes por noticia/evento, recorte/redimensionado, o una librería de medios
 - Categorías, tags o búsqueda de texto completo sobre News/Events
+- RSVP / seguimiento de asistencia a eventos
 
 ## Dónde está cada cosa
 

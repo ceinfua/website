@@ -58,7 +58,7 @@ permitidos.
 | Ruta | Acceso |
 |---|---|
 | `/`, `/events`, `/news`, `/login`, `/register`, `/claim-account` | Pública |
-| `/api/auth/**`, `/api/register`, `/api/claim-account`, `/api/verify-email`, `/api/news` | Pública |
+| `/api/auth/**`, `/api/register`, `/api/claim-account`, `/api/verify-email`, `/api/news`, `/api/events` | Pública |
 | `/profile` | Cualquier usuario autenticado |
 | `/api/profile/password` | Cualquier usuario autenticado (no está en `PROTECTED_ROUTES` a propósito: cae en el chequeo por defecto de "autenticado, cualquier rol", igual que `/profile`) |
 | `/students` | `CEINFUA_MEMBER`, `ADMIN`, `EXTERNAL_PARTNER` |
