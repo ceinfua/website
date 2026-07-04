@@ -143,6 +143,22 @@ Marcado explícitamente como fuera de alcance en las specs, para futuras iteraci
 - Categorías, tags o búsqueda de texto completo sobre News/Events
 - RSVP / seguimiento de asistencia a eventos
 
+## Convención de idioma
+
+CEINFUA es un centro de estudiantes paraguayo; sus usuarios hablan español. Todo texto que un
+usuario efectivamente lee en la app corriendo debe estar en español: encabezados/labels/textos
+JSX, placeholders de formularios, links de navegación, y mensajes de error de API que se
+muestran en la UI (los strings de `NextResponse.json({ error: "..." })` que devuelven rutas
+consumidas por una página).
+
+El código se mantiene en inglés por convención habitual: nombres de variables/funciones,
+comentarios, nombres de modelos/enums, rutas de archivos, mensajes de commit, logs internos que
+no ve el usuario.
+
+`docs/` sigue la misma regla (español), porque documenta el proyecto para el equipo, que lee en
+español en el día a día — ver este documento y `docs/local-dev-notes.md` para el tono
+establecido.
+
 ## Dónde está cada cosa
 
 - Specs (qué se construye y por qué): `Interpreted-Context-Methdology/workspaces/feature-development/stages/01-spec/output/`
