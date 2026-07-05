@@ -5,6 +5,7 @@ import "./globals.css";
 import { auth } from "@/lib/auth";
 import { Role } from "@/app/generated/prisma/enums";
 import { LogoutButton } from "@/app/components/LogoutButton";
+import { Footer } from "@/app/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,6 +82,7 @@ export default async function RootLayout({
           )}
         </nav>
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

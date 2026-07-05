@@ -37,10 +37,9 @@ que el código nunca vuelva a ser público.
 - **No podés:** tomar este código, modificarlo, y distribuir esa versión (o correrla como
   servicio) bajo una licencia más restrictiva, ni quitarle la atribución/licencia.
 
-Si en algún momento este proyecto se despliega en un dominio real y accesible públicamente, hay
-que agregar un link visible ("Código fuente" o similar) que lleve al repositorio, para cumplir
-con la sección 13 de la AGPL. Al día de escribir esto, el proyecto solo corre localmente, así que
-ese requisito todavía no aplica — pero queda anotado acá para no olvidarlo al desplegar.
+El sitio ya cumple con esto: el footer, presente en todas las páginas (`app/layout.tsx` vía
+`app/components/Footer.tsx`), muestra un link ("Código fuente - AGPL") al repositorio público
+(https://github.com/ceinfua/website), sin importar el estado de autenticación del usuario.
 
 ## No es solo un archivo LICENSE
 
