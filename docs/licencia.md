@@ -7,11 +7,11 @@ práctica y por qué se eligió, no reemplaza el texto legal.
 
 ## Por qué AGPL y no otra licencia
 
-CEINFUA Website es software libre por decisión explícita del desarrollador, no un detalle
+El sitio web de CEINFUA es software libre por decisión explícita del desarrollador, no un detalle
 administrativo agregado al final. La AGPL en particular (en vez de MIT, Apache-2.0, o incluso la
 GPL "normal") se eligió por una razón concreta:
 
-Este proyecto es una aplicación web fullstack (Next.js con rutas de API) — el tipo de software
+Este proyecto es una aplicación web fullstack (Next.js con rutas de API): el tipo de software
 que normalmente se corre como servicio, no que se distribuye como binario o librería. La GPL
 "normal" exige compartir el código fuente solo cuando el software se **distribuye**; correrlo
 como servicio de red (alguien clona el repo, lo modifica, y lo despliega para que otros lo usen
@@ -25,12 +25,12 @@ red accesible por otros usuarios, tenés que ofrecerles acceso al código fuente
 modificada (ver sección 13 de la licencia). Esto está alineado con el espíritu original del
 proyecto: es software para un centro de estudiantes, pensado para que otros centros de
 estudiantes o proyectos similares puedan reusarlo, adaptarlo, y beneficiarse de las mejoras que
-se hagan en cualquier fork — no para que una copia modificada termine corriendo en algún lado sin
+se hagan en cualquier fork, no para que una copia modificada termine corriendo en algún lado sin
 que el código nunca vuelva a ser público.
 
 ## Qué implica en la práctica
 
-- **Podés:** usar, estudiar, modificar y redistribuir este código libremente, incluso con fines
+- **Podés:** descargar, instalar, usar, estudiar, modificar y redistribuir este código libremente, incluso con fines
   comerciales.
 - **Si distribuís una versión modificada, o la corrés como servicio de red que otros usan:**
   tenés que ofrecer el código fuente de esa versión (modificada o no) bajo la misma licencia.

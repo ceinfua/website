@@ -1,8 +1,8 @@
 # Notas de Desarrollo Local
 
 Notas de trabajo sobre cómo dejar Postgres/Prisma/Docker funcionando localmente, y cómo encajan
-la autenticación y los roles. Complementa los pasos de configuración del `README.md` raíz. Leé
-ese primero si estás empezando de cero.
+la autenticación y los roles. Complementa los pasos de configuración de
+[`docs/instalacion.md`](./instalacion.md). Leé ese primero si estás empezando de cero.
 
 ## Docker
 

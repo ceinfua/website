@@ -11,7 +11,7 @@ a otro admin que te lo asigne desde `/admin/roles` (ver `docs/proyecto.md`, secc
 3. Completá:
    - **Título**
    - **Cuerpo** (el texto de la noticia)
-   - **Imagen** (opcional) — formatos aceptados: PNG, JPEG o WEBP, hasta 5MB
+   - **Imagen** (opcional): formatos aceptados PNG, JPEG o WEBP, hasta 5MB
 4. Hacé clic en **"Publicar"**.
 
 La noticia queda visible de inmediato en **`/news`**, la página pública. No hay borradores: lo
@@ -37,10 +37,10 @@ El evento aparece de inmediato en **`/events`**, la página pública:
 
 Desde `/admin/news` o `/admin/events`, cada fila de la tabla tiene dos acciones:
 
-- **Editar** — abre el mismo formulario con los datos actuales cargados. Podés cambiar cualquier
+- **Editar**: abre el mismo formulario con los datos actuales cargados. Podés cambiar cualquier
   campo, reemplazar la imagen, o sacar la imagen actual con "Quitar imagen". Los cambios se
   reflejan de inmediato en la página pública al guardar.
-- **Eliminar** — borra la publicación de forma permanente, incluida su imagen si tenía una. No
+- **Eliminar**: borra la publicación de forma permanente, incluida su imagen si tenía una. No
   hay forma de deshacer esto: no existe una papelera ni un historial de versiones.
 
 ## Errores comunes

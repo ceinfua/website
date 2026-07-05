@@ -50,10 +50,10 @@ autoasignarse un rol distinto de `STUDENT`.
 - **"No podés quitarte tu propio rol de admin"**: estás intentando cambiar tu propio rol desde
   `ADMIN` a otro.
 - **"No se puede degradar al último admin restante"**: sos el único `ADMIN` del sistema.
-- **"Rol inválido"**: error interno, no debería aparecer en uso normal — avisale a quien
+- **"Rol inválido"**: error interno, no debería aparecer en uso normal. Avisale a quien
   mantiene el sitio si lo ves.
 
 ## Ver también
 
-- `docs/guia-publicar-contenido.md` — cómo publicar noticias y eventos
-- `docs/proyecto.md` — visión general de cómo funciona el sistema de roles y cuentas
+- `docs/guia-publicar-contenido.md`: cómo publicar noticias y eventos
+- `docs/proyecto.md`: visión general de cómo funciona el sistema de roles y cuentas

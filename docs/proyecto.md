@@ -1,4 +1,4 @@
-# CEINFUA Website — Documentación del Proyecto
+# CEINFUA Website: Documentación del Proyecto
 
 Visión general de lo construido hasta ahora. Basado en las specs e implementation plans del
 pipeline de ICM (`Interpreted-Context-Methdology/workspaces/feature-development/stages/`), más
@@ -69,7 +69,7 @@ quedar sin ningún admin.
 `ADMIN` se crea con un script de seed (`prisma/seed.ts` → `npx prisma db seed`). Ver
 `docs/local-dev-notes.md` para las credenciales de desarrollo.
 
-### 3. Gestión de novedades (News) — CRUD de administración
+### 3. Gestión de novedades (News): CRUD de administración
 
 Solo un `ADMIN` puede crear, editar y borrar noticias desde `/admin/news`
 (`app/api/admin/news/route.ts` + `app/api/admin/news/[id]/route.ts`). La publicación es
@@ -80,12 +80,12 @@ y una imagen de portada opcional.
 tamaño (máx. 5MB) antes de subir. Al reemplazar o borrar una noticia, la imagen vieja también se
 borra del blob store, para no dejar archivos huérfanos.
 
-**Página pública `/news`:** ya no es un placeholder — trae las últimas 10 noticias
+**Página pública `/news`:** ya no es un placeholder, trae las últimas 10 noticias
 (`createdAt` descendente) directamente vía Prisma en el server component, y expone "Cargar más"
-que pagina con cursor contra `GET /api/news` (ruta pública, sin autenticación — ver
+que pagina con cursor contra `GET /api/news` (ruta pública, sin autenticación, ver
 `docs/permissions.md`).
 
-**Eventos (`/events`, `/admin/events`) quedan fuera de esta iteración** — mismo patrón, se
+**Eventos (`/events`, `/admin/events`) quedan fuera de esta iteración**: mismo patrón, se
 construye en una PR separada (ver sección "Lo que falta" abajo).
 
 ## Decisiones de arquitectura relevantes
@@ -103,7 +103,7 @@ construye en una PR separada (ver sección "Lo que falta" abajo).
   `apellido`, `cedula`, `carrera`, `estado`, etc.) están en español porque el dato en sí es
   consumido y leído directamente por stakeholders no técnicos.
 
-### 4. Gestión de eventos (Events) — CRUD de administración
+### 4. Gestión de eventos (Events): CRUD de administración
 
 Mismo patrón que News (sección 3): solo un `ADMIN` puede crear, editar y borrar eventos desde
 `/admin/events` (`app/api/admin/events/route.ts` + `app/api/admin/events/[id]/route.ts`),
@@ -111,13 +111,13 @@ publicación inmediata, imagen de portada opcional reutilizando `lib/blob.ts` si
 (carpeta `"events"` en vez de `"news"`). Cada evento tiene título, descripción, fecha e imagen
 opcional.
 
-**Página pública `/events`:** ya no es un placeholder — se divide en dos secciones
+**Página pública `/events`:** ya no es un placeholder, se divide en dos secciones
 independientes, cada una con su propia paginación por cursor:
 - **Próximos eventos:** `date >= ahora`, orden ascendente (el más próximo primero)
 - **Eventos pasados:** `date < ahora`, orden descendente (el más reciente primero)
 
 Ambas secciones consultan `GET /api/events?when=upcoming|past` (ruta pública, sin
-autenticación — ver `docs/permissions.md`) para "Cargar más". Un evento con fecha pasada se
+autenticación, ver `docs/permissions.md`) para "Cargar más". Un evento con fecha pasada se
 puede crear igual (por ejemplo para dejar registro de un evento ya ocurrido); simplemente
 aparece directo en la sección de pasados.
 
@@ -156,7 +156,7 @@ comentarios, nombres de modelos/enums, rutas de archivos, mensajes de commit, lo
 no ve el usuario.
 
 `docs/` sigue la misma regla (español), porque documenta el proyecto para el equipo, que lee en
-español en el día a día — ver este documento y `docs/local-dev-notes.md` para el tono
+español en el día a día. Ver este documento y `docs/local-dev-notes.md` para el tono
 establecido.
 
 ## Dónde está cada cosa
@@ -164,6 +164,7 @@ establecido.
 - Specs (qué se construye y por qué): `Interpreted-Context-Methdology/workspaces/feature-development/stages/01-spec/output/`
 - Planes de implementación (cómo se construye, paso a paso): `.../stages/02-implementation/output/`
 - Descripciones de PR: `.../stages/03-pr/output/`
+- Instalación y cómo correr el proyecto localmente: `docs/instalacion.md`
 - Notas operativas de desarrollo local (Docker, Prisma, credenciales): `docs/local-dev-notes.md`
 - Guía para admins sobre cómo publicar noticias y eventos (sin tocar código): `docs/guia-publicar-contenido.md`
 - Guía para cambiar tu contraseña y gestionar roles: `docs/guia-cuenta-y-roles.md`

@@ -62,7 +62,7 @@ que mezclarlas.
 
 Sin un dominio verificado en Resend, `EMAIL_FROM` tiene que usar el remitente de prueba
 `onboarding@resend.dev`. Esa dirección **solo puede enviar al email dueño de la cuenta de
-Resend** (403 `Testing domain restriction` para cualquier otro destinatario) — no sirve para
+Resend** (403 `Testing domain restriction` para cualquier otro destinatario): no sirve para
 mandarle un email de verificación a un estudiante real que se registre con su propio correo.
 
 Para que el flujo de registro funcione con cualquier destinatario, hace falta:
